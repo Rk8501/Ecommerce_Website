@@ -19,35 +19,7 @@ namespace EcommerceProject.Controllers
         {
             db = new AdminContext();       
         }
-        //public ActionResult Login()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Login(string User,string Pass)
-        //{
-        //    var obj = db.CustomerTable.Where(a => a.Email.Equals(User) && a.Password.Equals(Pass)).FirstOrDefault();
-        //    if (User == "admin@gmail.com" && Pass == "Admin123")
-        //    {
-        //        Session["user"] = User;
-        //        Session["pass"] = Pass;
-        //        return RedirectToAction("List","DashBoard");
-        //    }            
-        //    else if (obj != null)
-        //    {
-        //        Session["email"] = obj.Email.ToString();
-        //        Session["cid"] = obj.Customer_id.ToString();
-        //        return RedirectToAction("Myorder","UserProduct");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.msg = "Invalid Email and Password!!";
-        //    }
-        //    return View();
-        //}
-
-
+        
         //login 
         [HttpGet]
         public ActionResult Login()
@@ -63,13 +35,11 @@ namespace EcommerceProject.Controllers
             using (AdminContext db = new AdminContext())
             {
                 var v = db.CustomerTable.Where(a => a.Email == cl.Email).FirstOrDefault();
-                //var obj = db.CustomerTable.Where(a => a.Email.Equals(User) && a.Password.Equals(Pass)).FirstOrDefault();
                 if (cl.Email == "admin@gmail.com" && cl.Password == "Admin123")
                 {
                     Session["user"] = "Admin";
                     return RedirectToAction("List", "DashBoard");
                 }
-                //var v = db.CustomerLogin.Where(a => a.EmailID == cl.EmailID).FirstOrDefault();
 
                 else if (v != null)
                 {
@@ -111,10 +81,7 @@ namespace EcommerceProject.Controllers
         public ActionResult Signup(Customer cust)
         {
             bool Status = false;
-            string Message = "";
-
-            //if (ModelState.IsValid)
-            //{
+            string Message = "";          
 
                 #region Is Email Exist
                 var isExist = IsEmailExist(cust.Email);
@@ -147,12 +114,7 @@ namespace EcommerceProject.Controllers
                     "has been sent to your Email id : " + cust.Email;
                 Status = true;
 
-                #endregion
-            //}
-            //else
-            //{
-            //    Message = "Invalid Request";
-            //}
+                #endregion    
 
             ViewBag.Message = Message;
             ViewBag.Status = Status;
