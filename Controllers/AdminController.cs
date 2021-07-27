@@ -27,7 +27,7 @@ namespace EcommerceProject.Controllers
             return View(new CustomerLogin { cid = 0 });
         }
 
-        //login post 
+        //login post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(CustomerLogin cl, string ReturnUrl = "")
